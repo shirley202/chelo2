@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurante Chelo Parrilla</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500&display=swap">
+    <style>
+         body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333333;
+        }
+
+        header {
+            background-color: #2B2525; /* Color de fondo del encabezado */
+            height: 200px; /* Altura del encabezado */
+            display: flex;
+            align-items: center; /* Centrar verticalmente el contenido */
+            justify-content: center; /* Centrar el contenido horizontalmente */
+            padding: 0 30px; /* Espaciado horizontal */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para mejora visual */
+        }
+
+        .logo-container {
+            flex: 1; /* Permite que el logo ocupe el espacio disponible */
+            display: flex;
+            justify-content: center; /* Centra el logo horizontalmente */
+        }
+
+        .logo {
+            height: auto; /* Mantiene la proporción de la altura */
+            width: 250px; /* Ajusta el ancho según tus necesidades */
+            max-height: 200px; /* Asegura que no exceda la altura máxima del encabezado */
+            image-rendering: auto; /* Permite el mejor método de renderizado */
+        }
+
+        .menu-container {
+            display: flex; /* Flex para alinear los enlaces */
+            gap: 5px; /* Espacio entre los enlaces */
+            margin-top: 10px; /* Ajusta el espacio entre el logo y el menú */
+        }
+
+        .menu-link {
+            color: white;
+            padding: 10px 20px; /* Espaciado del botón del menú */
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 20px; /* Tamaño de la fuente del menú */
+            font-family: 'Inter', sans-serif; /* Cambia la fuente a Inter */
+            font-weight: 500; /* Peso de la fuente */
+            transition: background-color 0.3s, transform 0.3s; /* Efecto de transición */
+        }
+
+        .menu-link:hover {
+            background-color: rgba(255, 255, 255, 0.2); /* Color de fondo más suave en hover */
+            transform: scale(1.05); /* Aumentar un poco el tamaño en hover */
+        }
+
+        /* Media Queries para Responsividad */
+        @media (max-width: 768px) {
+            header {
+                height: auto; /* Ajusta la altura del encabezado */
+                flex-direction: column; /* Coloca logo y menú en columnas */
+                align-items: center; /* Centra el contenido */
+                padding: 20px; /* Espaciado para pantallas pequeñas */
+            }
+
+            .logo {
+                width: 70%; /* Ajusta el ancho del logo en pantallas pequeñas */
+                max-height: 150px; /* Ajusta la altura máxima del logo */
+            }
+
+            .menu-container {
+                margin-top: 10px; /* Ajusta el espacio entre el logo y el menú */
+            }
+
+            .menu-link {
+                font-size: 18px; /* Reduce el tamaño de la fuente del menú */
+                margin: 5px; /* Espaciado entre enlaces */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                width: 80%; /* Ajusta el ancho del logo en pantallas extra pequeñas */
+            }
+
+            .menu-link {
+                font-size: 16px; /* Reduce aún más el tamaño de la fuente del menú */
+                padding: 8px 12px; /* Ajusta el espaciado del menú */
+            }
+        }
+
+        /* Estilo para las secciones */
+        section {
+            padding: 50px 20px;
+            background-color: #ffffff;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        section h2 {
+            margin-top: 0; /* Elimina margen superior en los títulos */
+            text-align: center;
+            color: #333; /* Color del texto de los títulos */
+        }
+
+        /* Sección de BURGERS */
+        #menu {
+            background-image: url('{% static "images/portada.jpg" %}');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        .burger-list {
+            list-style: none; /* Quitar estilo de lista */
+            padding: 0; /* Quitar padding */
+            margin: 0;
+        }
+
+        .burger-item {
+            display: flex; /* Usar flexbox para alinear la imagen y el texto */
+            margin-bottom: 20px; /* Espaciado entre las hamburguesas */
+            align-items: center; /* Centrar verticalmente */
+            background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semi-transparente para el texto */
+            padding: 20px;
+            border-radius: 8px; /* Bordes redondeados */
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Sombra */
+        }
+
+        .burger-image {
+            width: 150px; /* Ancho de la imagen de la hamburguesa */
+            height: auto; /* Mantener la proporción de la imagen */
+            border-radius: 5px; /* Bordes redondeados */
+            margin-right: 20px; /* Espacio entre la imagen y el texto */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para la imagen */
+        }
+
+        .burger-price {
+            font-weight: bold; /* Negrita para el precio */
+            font-size: 18px; /* Tamaño de fuente del precio */
+            margin-top: 5px; /* Espaciado superior */
+            color: #FFD700; /* Color dorado para el precio */
+        }
+
+       #asados {
+    background-image: url('{% static "images/portada_asado.jpg" %}'); /* Ruta a tu imagen de fondo */
+    background-size: cover; /* La imagen cubrirá todo el fondo */
+    background-position: center; /* Centrar la imagen */
+    padding: 50px;
+    text-align: center;
+    color: white; /* Texto en blanco para contrastar con la imagen de fondo */
+}
+
+.asado-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo oscuro semitransparente para la tabla */
+    color: white; /* Color del texto en blanco */
+}
+
+.asado-table th, .asado-table td {
+    padding: 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.asado-table th {
+    background-color: rgba(255, 255, 255, 0.2); /* Encabezados con fondo más claro */
+    color: white; /* Texto en blanco */
+}
+
+.asado-table td {
+    background-color: rgba(255, 255, 255, 0.1); /* Fondo semitransparente para las celdas */
+}
+
+.asado-table tr:hover {
+    background-color: rgba(255, 255, 255, 0.3); /* Efecto hover con mayor transparencia */
+}
+
+</style>
+</head>
+<body>
+   <header>
+    <div class="logo-container">
+        <img src="images/logo.png" alt="Logo de Chelo Parrilla" class="logo">
+    </div>
+   <div class="menu-container" style="margin-left: auto;">
+    <a class="menu-link" href="#menu">MENU</a>
+    <a class="menu-link" href="#eventos">EVENTOS</a>
+    <a class="menu-link" href="#contacto">CONTACTO</a>
+</div>
+</header>
+
+<main>
+    <section id="menu" style="background-image: url('images/portada.jpg');">
+        <h2 style="color: white;text-align: center;">BURGERS PARRILLERAS</h2>
+        <p style="text-align: center;">Disfruta de nuestras hamburguesas artesanales con carne a la parrilla y los mejores ingredientes.</p>
+        <ul class="burger-list">
+            <li class="burger-item">
+                <img src="images/simple.jpg" alt="Hamburguesa Clásica" class="burger-image">
+                <div>
+                    <h3>Hamburguesa Clásica</h3>
+                    <p>Deliciosa hamburguesa con pan artesanal, carne de vacio, queso Cheddar, lechuga, tomate y cebolla roja.</p>
+                    <div class="burger-price">GS.17.000</div>
+                </div>
+            </li>
+            <li class="burger-item">
+                <img src="images/doble.jpg" alt="Hamburguesa Doble" class="burger-image">
+                <div>
+                    <h3>Hamburguesa Doble</h3>
+                    <p>Deliciosa hamburguesa con pan artesanal, doble carne de vacio, queso Cheddar, lechuga, tomate y cebolla roja.</p>
+                    <div class="burger-price">GS.25.000</div>
+                </div>
+            </li>
+            <li class="burger-item">
+                <img src="images/panceta.jpg" alt="Hamburguesa con Panceta" class="burger-image">
+                <div>
+                    <h3>Hamburguesa con Panceta</h3>
+                    <p>Deliciosa hamburguesa con pan artesanal, carne de vacio, queso Cheddar, lechuga, panceta, tomate y cebolla roja.</p>
+                    <div class="burger-price">GS.20.000</div>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+    <section id="asados" style="background-image: url('images/portada_asado.jpg');">
+        <h2 style="color: white;text-align: center;">ASADO POR PORCIÓN</h2>
+        <p>Porciones generosas de nuestros mejores cortes de carne asada, preparadas a la perfección.</p>
+        <table class="asado-table">
+            <tr>
+                <th>Producto</th>
+                <th>Precio</th>
+            </tr>
+            <tr>
+                <td>Porción de Asado 1 persona</td>
+                <td>GS. 30.000</td>
+            </tr>
+            <tr>
+                <td>Porción de Asado 2 personas</td>
+                <td>GS. 60.000</td>
+            </tr>
+            <tr>
+                <td>Picada para 1 persona</td>
+                <td>GS. 30.000</td>
+            </tr>
+            <tr>
+                <td>Picada para 2 personas</td>
+                <td>GS. 60.000</td>
+            </tr>
+            <tr>
+                <td>Sopa en porciones</td>
+                <td>GS. 3.000</td>
+            </tr>
+            <tr>
+                <td>Ensalada de papa</td>
+                <td>GS. 12.000</td>
+            </tr>
+            <tr>
+                <td>Pan de Ajo</td>
+                <td>GS. 5.000</td>
+            </tr>
+            <!-- Otras filas -->
+        </table>
+    </section>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<section id="eventos" style="background-image: url('images/foto2.png'); background-size: cover; background-position: center; padding: 50px 20px; color: white;">
+
+
+    <div style="background-color: rgba(0, 0, 0, 0.6); padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); margin: 0 auto; max-width: 800px;">
+         <h2 style="color: white;text-align: center;">Eventos Especiales</h2>
+    <p style="text-align: center;">
+        Celebra tus eventos con nosotros. Ofrecemos un servicio de parrilla completo y una variedad de opciones deliciosas.
+    </p>
+        <h3>Menú de Parrilla Completo</h3>
+        <ul>
+            <li><strong>Parrilla Completa:</strong> Costilla de primera, vacío, colita cuadril, tapa cuadril, cupin, tapa cuadril de cerdo, costilla de cerdo, muslo y patitas de pollo, chorizo toscano, con queso, parrillero, morcilla y matambrito de cerdo.</li>
+            <li><strong>Variedad de Ensaladas:</strong> Rusa, Alemana, de arroz, ensaladas verdes, remolachas, guarniciones como aceitunas, huevo de codorniz, palmitos, pepinillos y otros.</li>
+            <li><strong>Entradas:</strong> Picada de chorizo, toscano, parrillero, con queso, morcilla, matambrito de cerdo, sopa, mandioca, mbeju (servidas en parrillitas con carbón).</li>
+        </ul>
+
+        <h3>Platos Adicionales</h3>
+        <ul>
+            <li>Sopa paraguaya / Chipa guasu</li>
+            <li>Mandioca</li>
+            <li>Catering de mozos (1 mozo por cada 25 personas)</li>
+        </ul>
+
+        <h3>Precios</h3>
+        <p><strong>Adultos:</strong> 80.000 Gs.</p>
+        <p><strong>Niños (de 5 a 11 años):</strong> 40.000 Gs.</p>
+    </div>
+
+    <!-- Carrusel de imágenes -->
+    <div id="eventosCarousel" class="carousel slide" data-ride="carousel" style="margin-top: 30px;">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="images/foto.png" class="d-block w-100" alt="Evento 1">
+            </div>
+            <div class="carousel-item">
+                <img src="images/foto3.png" class="d-block w-100" alt="Evento 2">
+            </div>
+            <div class="carousel-item">
+                <img src="images/foto4.png" class="d-block w-100" alt="Evento 3">
+            </div>
+        <a class="carousel-control-prev" href="#eventosCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Anterior</span>
+        </a>
+        <a class="carousel-control-next" href="#eventosCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Siguiente</span>
+        </a>
+    </div>
+
+</section>
+
+
+    <section id="contacto" style="background-color: #2B2525; color: white; text-align: center;">
+        <h2>Contacto</h2>
+        <p>¿Tienes preguntas? ¡Contáctanos!</p>
+        <p>Teléfono: <strong>+595 975 161 036</strong></p>
+        <div>
+            <a href="https://www.facebook.com/cheloparrilla/?locale=es_LA" target="_blank">
+                <img src="images/facebook.png" alt="Facebook" style="width: 30px; height: 30px;">
+            </a>
+            <a href="https://www.instagram.com/chelo_parrilla/?hl=es" target="_blank">
+                <img src="images/instagram.jpg" alt="Instagram" style="width: 30px; height: 30px;">
+            </a>
+        </div>
+    </section>
+    
+
+</main>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Scripts aquí -->
+</body>
+</html>
