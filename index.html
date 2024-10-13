@@ -110,6 +110,8 @@
         }
 
         /* Sección de BURGERS */
+       
+        /* Mejoras para la seccion de BURGERS */
         #menu {
             background-image: url('{% static "images/portada.jpg" %}');
             background-size: cover;
@@ -118,36 +120,70 @@
         }
 
         .burger-list {
-            list-style: none; /* Quitar estilo de lista */
-            padding: 0; /* Quitar padding */
+            list-style: none;
+            padding: 0;
             margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
         }
 
         .burger-item {
-            display: flex; /* Usar flexbox para alinear la imagen y el texto */
-            margin-bottom: 20px; /* Espaciado entre las hamburguesas */
-            align-items: center; /* Centrar verticalmente */
-            background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semi-transparente para el texto */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
             padding: 20px;
-            border-radius: 8px; /* Bordes redondeados */
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Sombra */
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            width: 45%; /* Ocupa el 45% del ancho en pantallas grandes */
         }
 
         .burger-image {
-            width: 150px; /* Ancho de la imagen de la hamburguesa */
-            height: auto; /* Mantener la proporción de la imagen */
-            border-radius: 5px; /* Bordes redondeados */
-            margin-right: 20px; /* Espacio entre la imagen y el texto */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para la imagen */
+            width: 100%; /* La imagen ocupa el 100% del contenedor */
+            max-width: 150px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .burger-price {
-            font-weight: bold; /* Negrita para el precio */
-            font-size: 18px; /* Tamaño de fuente del precio */
-            margin-top: 5px; /* Espaciado superior */
-            color: #FFD700; /* Color dorado para el precio */
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 5px;
+            color: #FFD700;
         }
 
+        /* Responsividad para pantallas pequeñas */
+        @media (max-width: 768px) {
+            .burger-item {
+                width: 90%; /* Ocupa el 90% del ancho en pantallas pequeñas */
+            }
+
+            .burger-image {
+                max-width: 120px; /* Reduce el tamaño de la imagen */
+            }
+
+            .burger-price {
+                font-size: 16px; /* Reduce el tamaño del texto del precio */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .burger-item {
+                width: 100%; /* Ocupa el 100% del ancho en pantallas extra pequeñas */
+                margin-bottom: 15px; /* Menos espacio entre los elementos */
+            }
+
+            .burger-image {
+                max-width: 100px; /* Reduce aún más el tamaño de la imagen */
+            }
+
+            .burger-price {
+                font-size: 14px; /* Ajusta el tamaño del precio */
+            }
+        }
        #asados {
     background-image: url('{% static "images/portada_asado.jpg" %}'); /* Ruta a tu imagen de fondo */
     background-size: cover; /* La imagen cubrirá todo el fondo */
